@@ -2,7 +2,6 @@ import os
 import requests
 from itertools import count
 from math import ceil
-from pprint import pprint
 from dotenv import load_dotenv
 from terminaltables import AsciiTable
 
