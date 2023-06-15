@@ -1,15 +1,11 @@
 import os
-
+import requests
 from itertools import count
 from math import ceil
-
 from pprint import pprint
-
-import requests
-
 from dotenv import load_dotenv
-
 from terminaltables import AsciiTable
+
 
 TITLE_SJ = 'superjob_Moscow'
 TITLE_HH = 'headhunter_Moscow'
@@ -18,8 +14,8 @@ def get_language_hh_vacancies(language):
     vacancies_processed = 0
     for page_number in count(0, 1):
         params = {
-            'specialization': '1.221',  # id of programmer specialization
-            'area': '1',  # moscow area id
+            'specialization': '1.221',
+            'area': '1',
             'period': '30',
             'per_page': '100',
             'page': page_number,
@@ -43,6 +39,8 @@ def get_language_hh_vacancies(language):
         'average_salary': int(sum_salary / vacancies_processed)
     }
     return language_vacancies
+
+
 def get_language_sj_vacancies(language, token, vacancy_count_per_page):
     headers = {'X-Api-App-Id': token}
     sum_salary = 0
@@ -82,6 +80,7 @@ def get_language_sj_vacancies(language, token, vacancy_count_per_page):
     }
     return language_vacancies
 
+
 def predict_salary(salary_from, salary_to):
     if salary_from and salary_to:
         return (salary_from + salary_to) / 2
@@ -90,6 +89,7 @@ def predict_salary(salary_from, salary_to):
     elif salary_from:
         return salary_from * 1.2
 
+    
 def make_table(languages_params, title):
     table_data = [
         ['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата']
@@ -98,6 +98,7 @@ def make_table(languages_params, title):
         table_data.append([language, vacancy['vacancies_found'], vacancy['vacancies_processed'], vacancy['average_salary']])
     table = AsciiTable(table_data, title)
     return table.table
+
 
 if __name__ == "__main__":
     load_dotenv()
@@ -111,7 +112,6 @@ if __name__ == "__main__":
     for language in languages:
         languages_params_sj[language] = get_language_sj_vacancies(language, sj_key, vacancy_count_per_page)
 
-   # pprint(languages_params_hh)
-   # pprint(languages_params_sj)
+
 print (make_table(TITLE_SJ, languages_params_sj))
 print (make_table(TITLE_HH, languages_params_hh))
