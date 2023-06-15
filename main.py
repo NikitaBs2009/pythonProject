@@ -47,7 +47,7 @@ def get_language_sj_vacancies(language, token, vacancy_count_per_page):
     for page_number in count(0, 1):
         params = {
             'town': 'Moscow',
-            'catalogues': '48',  # id of programmer specialization
+            'catalogues': '48',  
             'keyword': language,
             'count': vacancy_count_per_page,
             'page': page_number
