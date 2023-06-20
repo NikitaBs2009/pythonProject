@@ -33,12 +33,12 @@ def get_language_hh_vacancies(language):
                 vacancies_processed += 1
         if page_number >= formated_response['pages'] - 1:
             break
-    language_vacancies = {
+    language_statistics = {
         'vacancies_found': formated_response['found'],
         'vacancies_processed': vacancies_processed,
         'average_salary': int(sum_salary / vacancies_processed)
     }
-    return language_vacancies
+    return language_statistics
 
 
 def get_language_sj_vacancies(language, token, vacancy_count_per_page):
@@ -73,12 +73,12 @@ def get_language_sj_vacancies(language, token, vacancy_count_per_page):
         )
         if page_number == vacancy_page_count - 1:
             break
-    language_vacancies = {
+    language_statistics = {
         'vacancies_found': formated_response['total'],
         'vacancies_processed': vacancies_processed,
         'average_salary': int(sum_salary / vacancies_processed)
     }
-    return language_vacancies
+    return language_statistics
 
 
 def predict_salary(salary_from, salary_to):
