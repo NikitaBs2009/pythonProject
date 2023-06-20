@@ -5,7 +5,6 @@ from math import ceil
 from dotenv import load_dotenv
 from terminaltables import AsciiTable
 
-
 TITLE_SJ = 'superjob_Moscow'
 TITLE_HH = 'headhunter_Moscow'
 
@@ -49,7 +48,7 @@ def get_language_sj_vacancies(language, token, vacancy_count_per_page):
     for page_number in count(0, 1):
         params = {
             'town': 'Moscow',
-            'catalogues': '48',  
+            'catalogues': '48',
             'keyword': language,
             'count': vacancy_count_per_page,
             'page': page_number
@@ -90,19 +89,26 @@ def predict_salary(salary_from, salary_to):
     elif salary_from:
         return salary_from * 1.2
 
-    
+
 def make_table(languages_params, title):
-    table_data = [
+    vacancy_table = [
         ['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата']
     ]
     for language, vacancy in languages_params.items():
-        table_data.append([language, vacancy['vacancies_found'], vacancy['vacancies_processed'], vacancy['average_salary']])
-    table = AsciiTable(table_data, title)
+        vacancy_table.append(
+            [language, vacancy['vacancies_found'], vacancy['vacancies_processed'], vacancy['average_salary']])
+    table = AsciiTable(vacancy_table, title)
     return table.table
+
+
+def main():
+    print(make_table(TITLE_SJ, languages_params_sj))
+    print(make_table(TITLE_HH, languages_params_hh))
 
 
 if __name__ == "__main__":
     load_dotenv()
+    main()
     sj_key = os.getenv('SECRET_KEY_SJ')
     languages = ['Python', 'Java', 'Javascript', 'CSS', 'C++', 'Ruby', 'PHP', 'C#']
     languages_params_sj = {}
@@ -110,7 +116,4 @@ if __name__ == "__main__":
     vacancy_count_per_page = 50
     for language in languages:
         languages_params_hh[language] = get_language_hh_vacancies(language)
-    for language in languages:
         languages_params_sj[language] = get_language_sj_vacancies(language, sj_key, vacancy_count_per_page)
-    print(make_table(TITLE_SJ, languages_params_sj))
-    print(make_table(TITLE_HH, languages_params_hh))
