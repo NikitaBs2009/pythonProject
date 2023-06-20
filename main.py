@@ -9,7 +9,7 @@ TITLE_SJ = 'superjob_Moscow'
 TITLE_HH = 'headhunter_Moscow'
 
 
-def get_language_hh_vacancies(language):
+def get_language_hh_statistics(language):
     sum_salary = 0
     vacancies_processed = 0
     for page_number in count(0, 1):
@@ -41,7 +41,7 @@ def get_language_hh_vacancies(language):
     return language_statistics
 
 
-def get_language_sj_vacancies(language, token, vacancy_count_per_page):
+def get_language_sj_statistics(language, token, vacancy_count_per_page):
     headers = {'X-Api-App-Id': token}
     sum_salary = 0
     vacancies_processed = 0
@@ -115,5 +115,5 @@ if __name__ == "__main__":
     languages_params_hh = {}
     vacancy_count_per_page = 50
     for language in languages:
-        languages_params_hh[language] = get_language_hh_vacancies(language)
-        languages_params_sj[language] = get_language_sj_vacancies(language, sj_key, vacancy_count_per_page)
+        languages_params_hh[language] = get_language_hh_statistics(language)
+        languages_params_sj[language] = get_language_sj_statistics(language, sj_key, vacancy_count_per_page)
