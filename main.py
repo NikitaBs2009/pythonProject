@@ -8,6 +8,8 @@ from terminaltables import AsciiTable
 
 TITLE_SJ = 'superjob_Moscow'
 TITLE_HH = 'headhunter_Moscow'
+
+
 def get_language_hh_vacancies(language):
     sum_salary = 0
     vacancies_processed = 0
@@ -110,7 +112,5 @@ if __name__ == "__main__":
         languages_params_hh[language] = get_language_hh_vacancies(language)
     for language in languages:
         languages_params_sj[language] = get_language_sj_vacancies(language, sj_key, vacancy_count_per_page)
-
-
-print (make_table(TITLE_SJ, languages_params_sj))
-print (make_table(TITLE_HH, languages_params_hh))
+    print(make_table(TITLE_SJ, languages_params_sj))
+    print(make_table(TITLE_HH, languages_params_hh))
