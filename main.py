@@ -25,11 +25,8 @@ def get_language_hh_statistics(language):
         response.raise_for_status()
         formated_response = response.json()
         for vacancy in formated_response['items']:
-            if vacancy['salary'] and vacancy['salary']['currency'] == 'RUR':
-                sum_salary += predict_salary(
-                    vacancy['salary']['from'],
-                    vacancy['salary']['to']
-                )
+            if vacancy['currency'] == 'rub' and (vacancy['payment_from'] or vacancy['payment_to']):
+                sum_salary += predict_salary(vacancy['payment_from'], vacancy['payment_to'])
                 vacancies_processed += 1
         if page_number >= formated_response['pages'] - 1:
             break
