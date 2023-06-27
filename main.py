@@ -27,7 +27,7 @@ def get_language_hh_statistics(language):
         for vacancy in formated_response['items']:
             if vacancy['currency'] == 'rub' and (vacancy['payment_from'] or vacancy['payment_to']):
                 sum_salary += predict_salary(vacancy['payment_from'], vacancy['payment_to'])
-                vacancies_processed += 1
+            vacancies_processed += 1
         if page_number >= formated_response['pages'] - 1:
             break
         if vacancies_processed:
@@ -66,7 +66,7 @@ def get_language_sj_statistics(language, token, vacancy_count_per_page):
                         vacancy['payment_from'],
                         vacancy['payment_to']
                     )
-                    vacancies_processed += 1
+                vacancies_processed += 1
         vacancy_page_count = ceil(
             formated_response['total'] / vacancy_count_per_page
         )
