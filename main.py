@@ -30,7 +30,7 @@ def get_language_hh_statistics(language):
                 vacancies_processed += 1
         if page_number >= formated_response['pages'] - 1:
             break
-        if sum_salary != 0:
+        if vacancies_processed:
             average_salary = int(sum_salary / vacancies_processed)
     language_statistics = {
         'vacancies_found': formated_response['found'],
@@ -72,7 +72,7 @@ def get_language_sj_statistics(language, token, vacancy_count_per_page):
         )
         if page_number == vacancy_page_count - 1:
             break
-       if sum_salary != 0:
+       if vacancies_processed:
             average_salary = int(sum_salary / vacancies_processed)
     language_statistics = {
         'vacancies_found': formated_response['found'],
