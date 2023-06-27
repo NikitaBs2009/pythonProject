@@ -102,14 +102,8 @@ def make_table(languages_params, title):
     return table.table
 
 
-def main():
-    print(make_table(TITLE_SJ, languages_params_sj))
-    print(make_table(TITLE_HH, languages_params_hh))
-
-
 if __name__ == "__main__":
     load_dotenv()
-    main()
     sj_key = os.getenv('SECRET_KEY_SJ')
     languages = ['Python', 'Java', 'Javascript', 'CSS', 'C++', 'Ruby', 'PHP', 'C#']
     languages_params_sj = {}
@@ -118,3 +112,5 @@ if __name__ == "__main__":
     for language in languages:
         languages_params_hh[language] = get_language_hh_statistics(language)
         languages_params_sj[language] = get_language_sj_statistics(language, sj_key, vacancy_count_per_page)
+    print(make_table(TITLE_SJ, languages_params_sj))
+    print(make_table(TITLE_HH, languages_params_hh))
