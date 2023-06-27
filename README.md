@@ -25,6 +25,6 @@ python table.py
 ```
 SJ_KEY='SJ_KEY'
 ```
-Получить токен SJ_KEY можно на сайте [API SuperJob](https://api.superjob.ru/?click_id=979Z1YOfpoZB4uf&utm_source=cityads&utm_medium=cpa&utm_campaign=2Keh)
+Получить токен SJ_KEY можно на сайте [API SuperJob](https://api.superjob.ru/?click_id=979Z1YOfpoZB4uf&utm_source=cityads&utm_medium=cpa&utm_campaign=2Keh).
 ## Цель проетка 
-Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/modules/) 
+Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/modules/).
